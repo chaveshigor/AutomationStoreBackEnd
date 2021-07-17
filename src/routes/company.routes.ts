@@ -1,9 +1,7 @@
-import { Router } from "express";
+import { Router } from 'express';
 
-const companyRoutes = Router()
+const companyRoutes = Router();
 
-companyRoutes.get("/", (req, res) => {
-    return res.json({hello: "world"})
-})
+companyRoutes.get('/', (req, res) => res.json({ hello: 'world' }));
 
-export { companyRoutes }
+export { companyRoutes };
