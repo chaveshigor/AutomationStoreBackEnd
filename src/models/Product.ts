@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 
 import { Company } from './Company';
 
-@Entity()
+@Entity('products')
 class Product {
     @PrimaryColumn()
     id: string

@@ -1,8 +1,11 @@
-import { Router } from "express";
-import { companyRoutes } from "./company.routes";
+import { Router } from 'express';
 
-const routes = Router()
+import { companyRoutes } from './company.routes';
+import { planRoutes } from './plan.routes';
 
-routes.use("/companies", companyRoutes)
+const routes = Router();
 
-export { routes }
+routes.use('/companies', companyRoutes);
+routes.use('/plans', planRoutes);
+
+export { routes };

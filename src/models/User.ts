@@ -4,7 +4,7 @@ import {
 
 import { Company } from './Company';
 
-@Entity()
+@Entity('users')
 class User {
     @PrimaryColumn()
     id: string
