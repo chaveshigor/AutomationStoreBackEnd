@@ -7,8 +7,10 @@ class CreateCompanyController {
 
   async handle(req: Request, res: Response): Promise<Response> {
     const {
-      name, fantasy_name, phone, email, adress, cnpj, plan_id,
+      name, fantasy_name, phone, email, adress, cnpj,
     } = req.body;
+
+    const { plan_id } = req.params;
 
     const newCompany = await this.createCompanyUseCase.execute({
       name, fantasy_name, phone, email, adress, cnpj, plan_id,
