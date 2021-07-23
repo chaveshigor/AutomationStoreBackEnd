@@ -5,19 +5,16 @@ interface INewPlanRequest {
     price: number
 }
 
-interface IName {
-    name?: string
+interface IParams {
     id?: string
-}
-
-interface IWhere {
-    where: IName
+    name?: string
+    price?: number
 }
 
 interface IPlansRepository {
-    create({ name, price }: INewPlanRequest): Plan
-    save(plan: Plan): Promise<Plan>
-    findOne(where: IWhere): Promise<Plan | undefined>
+    create({ name, price }: INewPlanRequest): Promise<Plan>
+    findOne(where: IParams): Promise<Plan | undefined>
+    update(planToUpdate: IParams, planData: IParams): Promise<Plan | undefined>
 }
 
-export { IPlansRepository };
+export { IPlansRepository, IParams };

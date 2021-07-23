@@ -1,21 +1,18 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
 import { EditPlanUseCase } from './editPlanUseCase';
 
 class EditPlanController {
-    private editPlanUseCase: EditPlanUseCase
+  async handle(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const { name, price } = req.body;
 
-    constructor(editPlanUseCase: EditPlanUseCase) {
-      this.editPlanUseCase = editPlanUseCase;
-    }
+    const editPlanUseCase = container.resolve(EditPlanUseCase);
 
-    async handle(req: Request, res: Response): Promise<Response> {
-      const { id } = req.params;
-      const { name, price } = req.body;
+    const plan = await editPlanUseCase.execute({ id, name, price });
 
-      const plan = await this.editPlanUseCase.execute({ id, name, price });
-
-      return res.json(plan);
-    }
+    return res.json(plan);
+  }
 }
 export { EditPlanController };

@@ -1,10 +1,16 @@
-import { getCustomRepository } from 'typeorm';
+import { inject, injectable } from 'tsyringe';
 
-import { CompaniesRepository } from '../../repositories/companiesRepository';
+import { ICompaniesRepository } from '../../repositories/ICompaniesRepository';
 
+@injectable()
 class DeleteCompanyUseCase {
+  constructor(
+    @inject('CompaniesRepository')
+    private repo: ICompaniesRepository,
+  ) {}
+
   async execute(cnpj: string): Promise<void> {
-    const repo = getCustomRepository(CompaniesRepository);
+    const { repo } = this;
 
     await repo.delete({ CNPJ: cnpj });
   }

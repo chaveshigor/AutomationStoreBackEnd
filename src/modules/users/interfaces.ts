@@ -7,4 +7,9 @@ interface IRequestCreateUser {
     admin: boolean
 }
 
-export { IRequestCreateUser };
+interface IRequestChangeRole {
+    user_changer: string
+    user_to_change_role: string
+}
+
+export { IRequestCreateUser, IRequestChangeRole };

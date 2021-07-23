@@ -1,6 +1,7 @@
 import {
   Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, ManyToOne, JoinColumn,
 } from 'typeorm';
+import { v4 as uuid } from 'uuid';
 
 import { Company } from './Company';
 
@@ -36,6 +37,12 @@ class User {
 
     @UpdateDateColumn()
     updated_at: Date
+
+    constructor() {
+      if (!this.id) {
+        this.id = uuid();
+      }
+    }
 }
 
 export { User };

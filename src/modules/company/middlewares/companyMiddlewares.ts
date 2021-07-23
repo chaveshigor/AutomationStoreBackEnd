@@ -11,9 +11,9 @@ async function checkIfCompanyExists(
 
   const repo = getCustomRepository(CompaniesRepository);
 
-  const company = await repo.findOne({
-    where: { CNPJ: cnpj },
-  });
+  const company = await repo.findOne(
+    { CNPJ: cnpj },
+  );
 
   if (!company) {
     return res.status(404).json({ error: 'company not found' });
@@ -33,9 +33,9 @@ async function checkIfCompanyExistsById(
 
   const repo = getCustomRepository(CompaniesRepository);
 
-  const company = await repo.findOne({
-    where: { id: company_id },
-  });
+  const company = await repo.findOne(
+    { id: company_id },
+  );
 
   if (!company) {
     return res.status(404).json({ error: 'company not found' });

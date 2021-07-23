@@ -1,34 +1,36 @@
-import { getCustomRepository } from 'typeorm';
+import { inject, injectable } from 'tsyringe';
 
 import { ErrorHandler } from '../../../../ErrorHandler';
 import { Company } from '../../../../models/Company';
 import { IRequestCreateCompany } from '../../interfaces';
-import { CompaniesRepository } from '../../repositories/companiesRepository';
+import { ICompaniesRepository } from '../../repositories/ICompaniesRepository';
 
+@injectable()
 class CreateCompanyUseCase {
-  async execute({
-    name, fantasy_name, cnpj, phone, email, plan_id, adress,
-  }: IRequestCreateCompany): Promise<Company> {
-    const repo = getCustomRepository(CompaniesRepository);
+  constructor(
+    @inject('CompaniesRepository')
+    private repo: ICompaniesRepository,
+  ) {}
 
-    const checkIfCompanyExists = await repo.findOne({
-      where: { CNPJ: cnpj },
-    });
+  async execute({
+    name, fantasy_name, CNPJ, phone, email, plan_id, adress,
+  }: IRequestCreateCompany): Promise<Company> {
+    const { repo } = this;
+
+    const checkIfCompanyExists = await repo.findOne({ CNPJ });
     if (checkIfCompanyExists) {
       throw new ErrorHandler('company already exists', 400);
     }
 
     const newCompany = repo.create({
       name,
-      CNPJ: cnpj,
+      CNPJ,
       fantasy_name,
       phone,
       email,
       plan_id,
       adress,
     });
-
-    await repo.save(newCompany);
 
     return newCompany;
   }

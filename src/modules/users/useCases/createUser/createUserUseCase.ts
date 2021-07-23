@@ -1,14 +1,26 @@
-import { getCustomRepository } from 'typeorm';
+import { inject, injectable } from 'tsyringe';
 
+import { ErrorHandler } from '../../../../ErrorHandler';
 import { User } from '../../../../models/User';
 import { IRequestCreateUser } from '../../interfaces';
-import { UsersRepository } from '../../repositories/usersRepository';
+import { IUsersRepository } from '../../repositories/IUsersRepository';
 
+@injectable()
 class CreateUserUseCase {
+  constructor(
+    @inject('UsersRepository')
+    private repo: IUsersRepository,
+  ) {}
+
   async execute({
     first_name, last_name, email, password, admin, company_id,
   }: IRequestCreateUser): Promise<User> {
-    const repo = getCustomRepository(UsersRepository);
+    const { repo } = this;
+
+    const checkIfUserExists = await repo.findOne({ email });
+    if (checkIfUserExists) {
+      throw new ErrorHandler('user already exists', 400);
+    }
 
     const newUser = repo.create({
       first_name, last_name, email, password, admin, company_id,

@@ -7,7 +7,6 @@ interface IConnectionMananger {
 function connectionMananger(): IConnectionMananger {
   async function connect(): Promise<Connection> {
     const connection = await createConnection();
-    console.log('DB connected');
     return connection;
   }
 

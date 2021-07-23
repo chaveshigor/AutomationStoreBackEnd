@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class ShippedProducts1626544075435 implements MigrationInterface {
+export class CreateClient1627001986515 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'shipped_products',
+        name: 'clients',
         columns: [
           {
             name: 'id',
@@ -12,20 +12,28 @@ export class ShippedProducts1626544075435 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: 'product_id',
-            type: 'uuid',
-          },
-          {
-            name: 'status',
+            name: 'first_name',
             type: 'varchar',
           },
           {
-            name: 'sended_by',
+            name: 'last_name',
             type: 'varchar',
           },
           {
-            name: 'sended_date',
-            type: 'timestamp',
+            name: 'phone',
+            type: 'varchar',
+            isUnique: true,
+          },
+          {
+            name: 'email',
+            type: 'varchar',
+            isUnique: true,
+          },
+          {
+            name: 'cpf',
+            type: 'varchar',
+            isUnique: true,
+            isNullable: true,
           },
           {
             name: 'created_at',
@@ -38,21 +46,11 @@ export class ShippedProducts1626544075435 implements MigrationInterface {
             default: 'now()',
           },
         ],
-        foreignKeys: [
-          {
-            name: 'FKproductid',
-            referencedTableName: 'products',
-            referencedColumnNames: ['id'],
-            columnNames: ['product_id'],
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-          },
-        ],
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('shipped_products');
+    await queryRunner.dropTable('clients');
   }
 }

@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
 import { CreateCompanyUseCase } from './createCompanyUseCase';
 
 class CreateCompanyController {
-  constructor(private createCompanyUseCase: CreateCompanyUseCase) {}
-
   async handle(req: Request, res: Response): Promise<Response> {
     const {
       name, fantasy_name, phone, email, adress, cnpj,
@@ -12,8 +11,10 @@ class CreateCompanyController {
 
     const { plan_id } = req.params;
 
-    const newCompany = await this.createCompanyUseCase.execute({
-      name, fantasy_name, phone, email, adress, cnpj, plan_id,
+    const createCompanyUseCase = container.resolve(CreateCompanyUseCase);
+
+    const newCompany = await createCompanyUseCase.execute({
+      name, fantasy_name, phone, email, adress, CNPJ: cnpj, plan_id,
     });
 
     return res.status(201).json(newCompany);

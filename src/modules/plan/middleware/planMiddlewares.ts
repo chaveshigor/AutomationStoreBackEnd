@@ -7,7 +7,7 @@ import { IPlansRepository } from '../repositories/IPlansRepository';
 import { PlansRepository } from '../repositories/plansRepository';
 
 async function checkIfPlanExists(
-  req: Request, res: Response, next: NextFunction, repository?: IPlansRepository,
+  req: Request, res: Response, next: NextFunction,
 ): Promise<Response | void> {
   const { plan_id } = req.params;
 
@@ -17,7 +17,7 @@ async function checkIfPlanExists(
 
   const repo = getCustomRepository(PlansRepository);
 
-  const plan = await repo.findOne(plan_id);
+  const plan = await repo.findOne({ id: plan_id });
 
   if (!plan) {
     return res.status(404).json({ error: 'plan dont exists' });

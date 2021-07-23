@@ -1,7 +1,7 @@
 interface IRequestCreateCompany {
     name: string
     fantasy_name: string
-    cnpj: string
+    CNPJ: string
     phone: string
     adress: string
     email: string
