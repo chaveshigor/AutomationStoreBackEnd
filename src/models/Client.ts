@@ -1,28 +1,30 @@
 import {
-  Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn,
-  ManyToOne, JoinColumn,
+  Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryColumn, UpdateDateColumn,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 import { Company } from './Company';
 
-@Entity('products')
-class Product {
+@Entity('clients')
+class Client {
     @PrimaryColumn()
     id: string
 
-    @Column()
-    product: string
+    @ManyToMany(() => Company)
+    @JoinTable()
+    company: Company[]
 
     @Column()
-    price: number
+    first_name: string
 
     @Column()
-    company_id: string
+    last_name: string
 
-    // @JoinColumn({ name: 'company_id' })
-    // @ManyToOne(() => Company)
-    // company_product: Company
+    @Column()
+    phone: string
+
+    @Column()
+    email: string
 
     @CreateDateColumn()
     created_at: Date
@@ -37,4 +39,4 @@ class Product {
     }
 }
 
-export { Product };
+export { Client };

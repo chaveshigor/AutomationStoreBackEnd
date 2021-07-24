@@ -31,9 +31,9 @@ class Company {
     @Column()
     plan_id: string
 
-    @JoinColumn({ name: 'plan_id' })
-    @ManyToOne(() => Plan)
-    company_plan: Plan
+    // @JoinColumn({ name: 'plan_id' })
+    // @ManyToOne(() => Plan)
+    // company_plan: Plan
 
     @CreateDateColumn()
     created_at: Date

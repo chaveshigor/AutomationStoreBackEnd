@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
-import { ErrorHandler } from '../../../../ErrorHandler';
 import { Plan } from '../../../../models/Plan';
+import { ErrorHandler } from '../../../../shared/ErrorHandler';
 import { IRequestCreatePlan } from '../../interfaces';
 import { IPlansRepository } from '../../repositories/IPlansRepository';
 

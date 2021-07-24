@@ -1,16 +1,15 @@
-import { Connection, createConnection } from 'typeorm';
+import { createConnection, getConnectionOptions } from 'typeorm';
 
-interface IConnectionMananger {
-    connect: () => Promise<Connection>
+interface IOptions {
+  host: string;
 }
 
-function connectionMananger(): IConnectionMananger {
-  async function connect(): Promise<Connection> {
-    const connection = await createConnection();
-    return connection;
-  }
-
-  return { connect };
-}
+const connectionMananger = (): Promise<void> => getConnectionOptions().then((options) => {
+  const newOptions = options as IOptions;
+  newOptions.host = 'dbAS'; // Essa opção deverá ser EXATAMENTE o nome dado ao service do banco de dados
+  createConnection({
+    ...options,
+  });
+});
 
 export { connectionMananger };

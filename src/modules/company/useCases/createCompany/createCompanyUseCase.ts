@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
-import { ErrorHandler } from '../../../../ErrorHandler';
 import { Company } from '../../../../models/Company';
+import { ErrorHandler } from '../../../../shared/ErrorHandler';
 import { IRequestCreateCompany } from '../../interfaces';
 import { ICompaniesRepository } from '../../repositories/ICompaniesRepository';
 

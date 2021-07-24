@@ -25,9 +25,9 @@ class User {
     @Column()
     company_id: string
 
-    @JoinColumn({ name: 'company_id' })
-    @ManyToOne(() => Company)
-    user_company: Company
+    // @JoinColumn({ name: 'company_id' })
+    // @ManyToOne(() => Company)
+    // user_company: Company
 
     @Column()
     admin: boolean

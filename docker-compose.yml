@@ -1,0 +1,29 @@
+version: "3.7"
+
+services: 
+    dbAS:
+        image: postgres
+        container_name: automation-store-db
+        restart: always
+        ports: 
+            - 5432:5432
+        environment: 
+            - POSTGRES_USER=higor
+            - POSTGRES_PASSWORD=123456
+            - POSTGRES_DB=banquinho
+        volumes: 
+            - pgdata:/data/postgres
+    app:
+        build: .
+        container_name: automation-store
+        ports: 
+            - 3030:3030
+        volumes: 
+            - .:/usr/app
+        links: 
+            - dbAS
+        depends_on: 
+            - dbAS
+volumes: 
+    pgdata:
+        driver: local

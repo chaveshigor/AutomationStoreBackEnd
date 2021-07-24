@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { validate } from 'uuid';
 
-import { ErrorHandler } from '../../../ErrorHandler';
+import { ErrorHandler } from '../../../shared/ErrorHandler';
 import { IPlansRepository } from '../repositories/IPlansRepository';
 import { PlansRepository } from '../repositories/plansRepository';
 

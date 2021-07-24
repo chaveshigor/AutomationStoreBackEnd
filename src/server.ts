@@ -7,10 +7,10 @@ import express, { NextFunction, Request, Response } from 'express';
 // Importing the db connection mananger
 import { connectionMananger } from './database/connection';
 // Importing the routes
-import { ErrorHandler } from './ErrorHandler';
 import { routes } from './routes/index.routes';
+import { ErrorHandler } from './shared/ErrorHandler';
 
-connectionMananger().connect();
+connectionMananger();
 
 const app = express();
 
