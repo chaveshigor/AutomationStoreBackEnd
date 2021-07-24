@@ -10,19 +10,19 @@ import { checkIfPlanExists } from '../modules/plan/middleware/planMiddlewares';
 const companyRoutes = Router();
 
 companyRoutes.post('/:plan_id',
-  (req, res, next) => checkIfPlanExists(req, res, next),
+  checkIfPlanExists,
   new CreateCompanyController().handle);
 
 companyRoutes.put('/',
-  (req, res, next) => checkIfCompanyExists(req, res, next),
+  checkIfCompanyExists,
   new EditCompanyController().handle);
 
 companyRoutes.patch('/:plan_id',
-  (req, res, next) => checkIfCompanyExists(req, res, next),
+  checkIfCompanyExists,
   new ChangePlanController().handle);
 
 companyRoutes.delete('/',
-  (req, res, next) => checkIfCompanyExists(req, res, next),
+  checkIfCompanyExists,
   new DeleteCompanyController().handle);
 
 export { companyRoutes };

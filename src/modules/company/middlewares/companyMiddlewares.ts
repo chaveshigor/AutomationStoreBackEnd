@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import { getCustomRepository } from 'typeorm';
 import { validate } from 'uuid';
 
 import { CompaniesRepository } from '../repositories/companiesRepository';
@@ -9,7 +8,7 @@ async function checkIfCompanyExists(
 ): Promise<Response | void> {
   const { cnpj } = req.body;
 
-  const repo = getCustomRepository(CompaniesRepository);
+  const repo = new CompaniesRepository();
 
   const company = await repo.findOne(
     { CNPJ: cnpj },
@@ -31,8 +30,7 @@ async function checkIfCompanyExistsById(
     return res.status(400).json({ error: 'id not valid' });
   }
 
-  const repo = getCustomRepository(CompaniesRepository);
-
+  const repo = new CompaniesRepository();
   const company = await repo.findOne(
     { id: company_id },
   );

@@ -1,9 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { getCustomRepository } from 'typeorm';
 import { validate } from 'uuid';
 
 import { ErrorHandler } from '../../../shared/ErrorHandler';
-import { IPlansRepository } from '../repositories/IPlansRepository';
 import { PlansRepository } from '../repositories/plansRepository';
 
 async function checkIfPlanExists(
@@ -15,7 +13,7 @@ async function checkIfPlanExists(
     throw new ErrorHandler('invalid plan id', 400);
   }
 
-  const repo = getCustomRepository(PlansRepository);
+  const repo = new PlansRepository();
 
   const plan = await repo.findOne({ id: plan_id });
 

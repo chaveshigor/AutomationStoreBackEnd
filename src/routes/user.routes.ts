@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import { ensureAuth } from '../middlewares/ensureAuth';
 import { checkIfCompanyExistsById } from '../modules/company/middlewares/companyMiddlewares';
 import { checkIfUserExists, checkIfUserIsAdmin } from '../modules/users/middlewares/usersMiddlewares';
 import { ChangeRoleController } from '../modules/users/useCases/changeRule/changeRoleController';
@@ -8,12 +9,13 @@ import { CreateUserController } from '../modules/users/useCases/createUser/creat
 const userRoutes = Router();
 
 userRoutes.post('/',
-  (req, res, next) => checkIfCompanyExistsById(req, res, next),
+  checkIfCompanyExistsById,
   new CreateUserController().handle);
 
 userRoutes.patch('/',
-  (req, res, next) => checkIfUserExists(req, res, next),
-  (req, res, next) => checkIfUserIsAdmin(req, res, next),
+  ensureAuth,
+  checkIfUserExists,
+  checkIfUserIsAdmin,
   new ChangeRoleController().handle);
 
 export { userRoutes };

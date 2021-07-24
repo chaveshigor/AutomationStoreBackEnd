@@ -9,11 +9,12 @@
     "dev": "ts-node-dev src/index.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
     "test": "jest",
-    "email": "ts-node-dev src/shared/sendEmail.ts"
+    "email": "ts-node-dev src/shared/email/emailFunctions.ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
+    "@types/handlebars": "^4.1.0",
     "@types/jest": "^26.0.24",
     "@types/jsonwebtoken": "^8.5.4",
     "@types/nodemailer": "^6.4.4",
@@ -38,6 +39,7 @@
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
+    "handlebars": "^4.7.7",
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.6.3",
     "pg": "^8.6.0",
