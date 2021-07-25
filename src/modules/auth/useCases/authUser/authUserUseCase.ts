@@ -2,10 +2,10 @@ import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
-import { User } from '../../../models/User';
-import { ErrorHandler } from '../../../shared/ErrorHandler';
-import { IUsersRepository } from '../../users/repositories/IUsersRepository';
-import { IRequestAuth } from '../interface';
+import { User } from '../../../../models/User';
+import { ErrorHandler } from '../../../../shared/ErrorHandler';
+import { IUsersRepository } from '../../../users/repositories/IUsersRepository';
+import { IRequestAuth } from '../../interface';
 
 interface IUserReturn {
   user: {

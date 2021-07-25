@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { validate } from 'uuid';
 
-import { CompaniesRepository } from '../repositories/companiesRepository';
+import { CompaniesRepository } from '../modules/company/repositories/companiesRepository';
 
 async function checkIfCompanyExists(
   req: Request, res: Response, next: NextFunction,
@@ -24,7 +24,11 @@ async function checkIfCompanyExists(
 async function checkIfCompanyExistsById(
   req: Request, res: Response, next: NextFunction,
 ): Promise<Response | void> {
-  const { company_id } = req.body;
+  let { company_id } = req.body;
+
+  if (!company_id) {
+    company_id = req.user.company_id;
+  }
 
   if (!validate(company_id)) {
     return res.status(400).json({ error: 'id not valid' });

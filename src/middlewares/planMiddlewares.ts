@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { validate } from 'uuid';
 
-import { ErrorHandler } from '../../../shared/ErrorHandler';
-import { PlansRepository } from '../repositories/plansRepository';
+import { PlansRepository } from '../modules/plan/repositories/plansRepository';
+import { ErrorHandler } from '../shared/ErrorHandler';
 
 async function checkIfPlanExists(
   req: Request, res: Response, next: NextFunction,

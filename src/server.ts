@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(routes);
 
 // Error middleware
-app.use((err: ErrorHandler, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof ErrorHandler) {
     return res.status(err.status).json({
       error: err.message,
@@ -26,7 +26,7 @@ app.use((err: ErrorHandler, req: Request, res: Response, next: NextFunction) => 
   }
 
   return res.status(400).json({
-    error: 'unknowed error',
+    error: `unknowed error - ${err.message}`,
   });
 });
 

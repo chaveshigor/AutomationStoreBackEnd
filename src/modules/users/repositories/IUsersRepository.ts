@@ -14,6 +14,7 @@ interface IUsersRepository {
     findOne(params: IParams): Promise<User | undefined>
     create(userData: IParams): Promise<User>
     update(userToChange: IParams, userData: IParams): Promise<User | undefined>
+    deleteById(user_id: string): Promise<void>
 }
 
 export { IUsersRepository, IParams };

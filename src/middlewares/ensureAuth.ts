@@ -29,6 +29,8 @@ async function ensureAuth(
     // colocar dados do user na request
     req.user = {
       id: user_id,
+      admin: user.admin,
+      company_id: user.company_id,
     };
   } catch (error) {
     return res.status(401).json({ error: 'invalid token' });

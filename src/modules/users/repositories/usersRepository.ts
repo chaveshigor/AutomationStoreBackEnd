@@ -10,6 +10,9 @@ class UsersRepository implements IUsersRepository {
     constructor() {
       this.repo = getRepository(User);
     }
+    async deleteById(user_id: string): Promise<void> {
+      await this.repo.delete(user_id);
+    }
 
     async findOne(params: IParams): Promise<User | undefined> {
       const user = await this.repo.findOne({ where: params });

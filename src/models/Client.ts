@@ -10,9 +10,9 @@ class Client {
     @PrimaryColumn()
     id: string
 
-    @ManyToMany(() => Company)
-    @JoinTable()
-    company: Company[]
+    // @ManyToMany(() => Company)
+    // @JoinTable()
+    // company: Company[]
 
     @Column()
     first_name: string

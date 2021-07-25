@@ -10,6 +10,11 @@ class PlansRepository implements IPlansRepository {
     constructor() {
       this.repo = getRepository(Plan);
     }
+    async list(): Promise<Plan[]> {
+      const plans = await this.repo.find();
+
+      return plans;
+    }
 
     async create(planData: IParams): Promise<Plan> {
       const newPlan = this.repo.create(planData);

@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateProduct1626544034954 implements MigrationInterface {
+export class CreateTokenToResetPassword1627156499741 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'products',
+        name: 'tokens_to_recover_password',
         columns: [
           {
             name: 'id',
@@ -12,39 +12,29 @@ export class CreateProduct1626544034954 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: 'name',
-            type: 'varchar',
-          },
-          {
-            name: 'price',
-            type: 'money',
-          },
-          {
-            name: 'description',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'company_id',
+            name: 'user_id',
             type: 'uuid',
+          },
+          {
+            name: 'token',
+            type: 'varchar',
+          },
+          {
+            name: 'expire_at',
+            type: 'timestamp',
           },
           {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',
           },
-          {
-            name: 'updated_at',
-            type: 'timestamp',
-            default: 'now()',
-          },
         ],
         foreignKeys: [
           {
-            name: 'FKproductcompany',
-            referencedTableName: 'companies',
+            name: 'FKuser_to_reset_password',
+            referencedTableName: 'users',
             referencedColumnNames: ['id'],
-            columnNames: ['company_id'],
+            columnNames: ['user_id'],
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
           },
@@ -54,6 +44,6 @@ export class CreateProduct1626544034954 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('products');
+    await queryRunner.dropTable('tokens_to_recover_password');
   }
 }

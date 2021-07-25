@@ -5,7 +5,8 @@ import { ChangeRoleUseCase } from './changeRoleUseCase';
 
 class ChangeRoleController {
   async handle(req: Request, res: Response): Promise<Response> {
-    const { user_id, user_to_change_role } = req.body;
+    const { user_to_change_role } = req.body;
+    const { id: user_id } = req.user;
 
     const changeRoleUseCase = container.resolve(ChangeRoleUseCase);
 

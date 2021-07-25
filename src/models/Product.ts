@@ -12,10 +12,13 @@ class Product {
     id: string
 
     @Column()
-    product: string
+    name: string
 
     @Column()
     price: number
+
+    @Column()
+    description?: string
 
     @Column()
     company_id: string
