@@ -18,22 +18,24 @@ export class CreateClient1627001986515 implements MigrationInterface {
           {
             name: 'last_name',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'phone',
             type: 'varchar',
-            isUnique: true,
           },
           {
             name: 'email',
             type: 'varchar',
-            isUnique: true,
           },
           {
             name: 'cpf',
             type: 'varchar',
-            isUnique: true,
             isNullable: true,
+          },
+          {
+            name: 'company_id',
+            type: 'uuid',
           },
           {
             name: 'created_at',
@@ -44,6 +46,16 @@ export class CreateClient1627001986515 implements MigrationInterface {
             name: 'updated_at',
             type: 'timestamp',
             default: 'now()',
+          },
+        ],
+        foreignKeys: [
+          {
+            name: 'FKclient_company',
+            referencedTableName: 'companies',
+            referencedColumnNames: ['id'],
+            columnNames: ['company_id'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
           },
         ],
       }),
