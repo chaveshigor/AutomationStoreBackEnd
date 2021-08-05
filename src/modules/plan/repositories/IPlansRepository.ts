@@ -18,4 +18,4 @@ interface IPlansRepository {
     list():Promise<Plan[]>
 }
 
-export { IPlansRepository, IParams };
+export { IPlansRepository, IParams, INewPlanRequest };
