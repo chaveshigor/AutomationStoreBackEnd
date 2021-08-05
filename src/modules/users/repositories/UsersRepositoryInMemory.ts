@@ -30,7 +30,7 @@ class UsersRepositoryInMemory implements IUsersRepository {
       Object.assign(newUser, {
         company_id, email, first_name, last_name,
       });
-
+      this.repo.push(newUser);
       return newUser;
     }
 
