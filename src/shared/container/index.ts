@@ -2,6 +2,8 @@ import { container } from 'tsyringe';
 
 import { ITokensRepository } from '../../modules/auth/repositories/ITokensRepository';
 import { TokensRepository } from '../../modules/auth/repositories/tokensRepository';
+import { ClientsRepository } from '../../modules/client/repositories/clientsRepository';
+import { IClientsRepository } from '../../modules/client/repositories/IClientsRepository';
 import { CompaniesRepository } from '../../modules/company/repositories/companiesRepository';
 import { ICompaniesRepository } from '../../modules/company/repositories/ICompaniesRepository';
 import { IPlansRepository } from '../../modules/plan/repositories/IPlansRepository';
@@ -34,4 +36,9 @@ container.registerSingleton<ITokensRepository>(
 container.registerSingleton<IProducsRepository>(
   'ProductsRepository',
   ProductsRepository,
+);
+
+container.registerSingleton<IClientsRepository>(
+  'ClientsRepository',
+  ClientsRepository,
 );
