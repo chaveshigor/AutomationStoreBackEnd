@@ -26,6 +26,12 @@ class Client {
     @Column()
     email: string
 
+    @Column()
+    cpf: string
+
+    @Column()
+    company_id: string
+
     @CreateDateColumn()
     created_at: Date
 
