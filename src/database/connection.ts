@@ -11,6 +11,7 @@ config({
 });
 
 async function setNewConnection(host = 'localhost'): Promise<Connection> {
+  console.log(process.env.NODE_ENV);
   const connectionOptions = await getConnectionOptions();
   Object.assign(connectionOptions, {
     host,

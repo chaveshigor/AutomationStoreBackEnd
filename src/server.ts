@@ -10,7 +10,7 @@ import { setNewConnection } from './database/connection';
 import { routes } from './routes/index.routes';
 import { ErrorHandler } from './shared/ErrorHandler';
 
-setNewConnection('dbAS');
+// setNewConnection('dbAS');
 
 const app = express();
 
