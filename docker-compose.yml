@@ -13,6 +13,20 @@ services:
             - POSTGRES_DB=banquinho
         volumes: 
             - pgdata:/data/postgres
+    
+    dbTest:
+        image: postgres
+        container_name: automation-store-db-test
+        restart: always
+        ports: 
+            - 2345:5432
+        environment: 
+            - POSTGRES_USER=higor
+            - POSTGRES_PASSWORD=123456
+            - POSTGRES_DB=banquinho
+        volumes: 
+            - pgdata:/data/postgres
+
     app:
         build: .
         container_name: automation-store
@@ -24,6 +38,7 @@ services:
             - dbAS
         depends_on: 
             - dbAS
+            - dbTest
 volumes: 
     pgdata:
         driver: local
