@@ -6,10 +6,11 @@
   "author": "<hhigorsilvachaves@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts",
+    "dev": "NODE_ENV=dev ts-node-dev src/index.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
     "test": "jest",
-    "email": "ts-node-dev src/shared/email/emailFunctions.ts"
+    "email": "ts-node-dev src/shared/email/emailFunctions.ts",
+    "restartInfra":"sudo docker-compose stop && sudo docker-compose start && sudo docker logs -f automation-store"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -37,6 +38,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "handlebars": "^4.7.7",

@@ -1,15 +1,24 @@
-import { createConnection, getConnectionOptions } from 'typeorm';
+import { config } from 'dotenv';
+import { Connection, createConnection, getConnectionOptions } from 'typeorm';
 
-interface IOptions {
-  host: string;
+let envirement = '';
+if (process.env.NODE_ENV) {
+  envirement = `.${process.env.NODE_ENV.trim()}`;
 }
 
-const connectionMananger = (): Promise<void> => getConnectionOptions().then((options) => {
-  const newOptions = options as IOptions;
-  newOptions.host = 'dbAS'; // Essa opção deverá ser EXATAMENTE o nome dado ao service do banco de dados
-  createConnection({
-    ...options,
-  });
+config({
+  path: `.env${envirement}`,
 });
 
-export { connectionMananger };
+async function setNewConnection(host = 'localhost'): Promise<Connection> {
+  const connectionOptions = await getConnectionOptions();
+  Object.assign(connectionOptions, {
+    host,
+  });
+
+  const newConnection = await createConnection(connectionOptions);
+
+  return newConnection;
+}
+
+export { setNewConnection };

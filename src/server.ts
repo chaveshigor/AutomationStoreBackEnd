@@ -5,12 +5,12 @@ import './shared/container';
 import express, { NextFunction, Request, Response } from 'express';
 
 // Importing the db connection mananger
-import { connectionMananger } from './database/connection';
+import { setNewConnection } from './database/connection';
 // Importing the routes
 import { routes } from './routes/index.routes';
 import { ErrorHandler } from './shared/ErrorHandler';
 
-connectionMananger();
+setNewConnection('dbAS');
 
 const app = express();
 
