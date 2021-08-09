@@ -1,24 +1,39 @@
 import request from 'supertest';
-import { Connection, getConnection } from 'typeorm';
 
-import { setNewConnection } from '../../database/connection';
 import { app } from '../../server';
+import { ConnectionMethods } from '../utils/connectionMethods';
+import { planSeed } from '../utils/seeds';
 
-let connection: Connection;
+const connectionMethods = new ConnectionMethods();
 
 describe('Plan features', () => {
-  beforeEach(async () => {
-    connection = await setNewConnection();
+  beforeAll(async () => {
+    await connectionMethods.connect();
   });
 
   afterEach(async () => {
-    // connection = getConnection();
-    // await connection.close();
+    await connectionMethods.clear();
   });
 
-  it('it should list all the plans', async () => {
-    const result = await request(app).get('/plans');
-    expect(result.text).toEqual('hello');
-    expect(result.statusCode).toEqual(200);
+  afterAll(async () => {
+    await connectionMethods.close();
+  });
+
+  it('it should create a new plan', async () => {
+    const { name, price } = planSeed();
+    const result = await request(app).post('/plans').send(planSeed());
+
+    expect(result.body.name).toEqual(name);
+    expect(result.body.price).toEqual(price);
+    expect(result.statusCode).toEqual(201);
+  });
+
+  it('it should not create a plan that already exists', async () => {
+    await request(app).post('/plans').send(planSeed());
+
+    const result = await request(app).post('/plans').send(planSeed());
+
+    expect(result.body).toHaveProperty('error');
+    expect(result.statusCode).toEqual(400);
   });
 });

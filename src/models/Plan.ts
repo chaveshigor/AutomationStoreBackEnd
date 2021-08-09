@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 @Entity('plans')
 class Plan {
     @PrimaryColumn()
-    id: string
+    id?: string
 
     @Column()
     name: string
@@ -15,10 +15,10 @@ class Plan {
     price: number
 
     @CreateDateColumn()
-    created_at: Date
+    created_at?: Date
 
     @UpdateDateColumn()
-    updated_at: Date
+    updated_at?: Date
 
     constructor() {
       if (!this.id) {
