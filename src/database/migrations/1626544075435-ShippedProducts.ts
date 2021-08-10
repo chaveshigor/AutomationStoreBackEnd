@@ -28,6 +28,10 @@ export class ShippedProducts1626544075435 implements MigrationInterface {
             type: 'timestamp',
           },
           {
+            name: 'transporter_code',
+            type: 'varchar',
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',
@@ -38,16 +42,16 @@ export class ShippedProducts1626544075435 implements MigrationInterface {
             default: 'now()',
           },
         ],
-        // foreignKeys: [
-        //   {
-        //     name: 'FKproductid',
-        //     referencedTableName: 'products',
-        //     referencedColumnNames: ['id'],
-        //     columnNames: ['product_id'],
-        //     onDelete: 'CASCADE',
-        //     onUpdate: 'CASCADE',
-        //   },
-        // ],
+        foreignKeys: [
+          {
+            name: 'FKproductid',
+            referencedTableName: 'products',
+            referencedColumnNames: ['id'],
+            columnNames: ['product_id'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+          },
+        ],
       }),
     );
   }
