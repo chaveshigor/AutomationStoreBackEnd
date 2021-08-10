@@ -20,6 +20,9 @@ class ShippedProduct {
     @Column()
     sended_date: Date
 
+    @Column()
+    transporter_code: string
+
     @CreateDateColumn()
     created_at?: Date
 
