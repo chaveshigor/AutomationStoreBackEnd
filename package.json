@@ -13,9 +13,11 @@
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
     "test": "jest",
     "email": "ts-node-dev src/shared/email/emailFunctions.ts",
-    "restartInfra": "sudo docker-compose stop && sudo docker-compose start && sudo docker logs -f automation-store"
+    "restartInfra": "sudo docker-compose stop && sudo docker-compose start && sudo docker logs -f automation-store",
+    "correios": "ts-node-dev src/api/services/correios.ts"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
     "@types/handlebars": "^4.1.0",
@@ -39,6 +41,7 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -48,9 +51,9 @@
     "nodemailer": "^6.6.3",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
+    "supertest": "^6.1.4",
     "tsyringe": "^4.6.0",
     "typeorm": "^0.2.34",
-    "uuid": "^8.3.2",
-    "supertest": "^6.1.4"
+    "uuid": "^8.3.2"
   }
 }
