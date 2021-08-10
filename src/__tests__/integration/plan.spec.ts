@@ -7,15 +7,12 @@ import { planSeed } from '../utils/seeds';
 const connectionMethods = new ConnectionMethods();
 
 describe('Plan features', () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     await connectionMethods.connect();
   });
 
   afterEach(async () => {
     await connectionMethods.clear();
-  });
-
-  afterAll(async () => {
     await connectionMethods.close();
   });
 
