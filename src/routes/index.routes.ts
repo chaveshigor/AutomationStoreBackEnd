@@ -5,6 +5,7 @@ import { clientsRoutes } from './clients.routes';
 import { companyRoutes } from './company.routes';
 import { planRoutes } from './plan.routes';
 import { productRoutes } from './product.routes';
+import { shipProductRoutes } from './shipProduct.routes';
 import { userRoutes } from './user.routes';
 
 const routes = Router();
@@ -15,5 +16,6 @@ routes.use('/users', userRoutes);
 routes.use('/clients', clientsRoutes);
 routes.use('/auth', authRoutes);
 routes.use('/products', productRoutes);
+routes.use('/shipProduct', shipProductRoutes);
 
 export { routes };
