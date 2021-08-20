@@ -1,7 +1,9 @@
 import {
-  Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn,
+  Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+
+import { User } from './User';
 
 @Entity('plans')
 class Plan {
@@ -19,6 +21,9 @@ class Plan {
 
     @UpdateDateColumn()
     updated_at?: Date
+
+    @OneToMany((type) => User, (user) => user)
+    users?: User[]
 
     constructor() {
       if (!this.id) {
