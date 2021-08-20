@@ -13,8 +13,8 @@
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
     "test": "jest",
     "email": "ts-node-dev src/shared/email/emailFunctions.ts",
-    "restartInfra": "sudo docker-compose stop && sudo docker-compose start && sudo docker logs -f automation-store",
-    "correios": "ts-node-dev src/api/services/correios.ts"
+    "restart-infra": "docker-compose stop && docker-compose start && docker logs -f automation-store",
+    "correios": "ts-node-dev src/parallel/services/verifyStatus.ts"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
