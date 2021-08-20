@@ -21,7 +21,7 @@ class CreatePlanUseCase {
       throw new ErrorHandler('Plan already exists', 400);
     }
 
-    const newPlan = repo.create({
+    const newPlan = await repo.create({
       name,
       price,
     });

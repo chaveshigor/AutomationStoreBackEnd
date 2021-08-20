@@ -28,13 +28,8 @@ export class CreateUser1626544024981 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'company_id',
+            name: 'plan_id',
             type: 'uuid',
-          },
-          {
-            name: 'admin',
-            type: 'boolean',
-            default: false,
           },
           {
             name: 'created_at',
@@ -49,11 +44,11 @@ export class CreateUser1626544024981 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: 'FKusercompany',
-            referencedTableName: 'companies',
+            name: 'FKuserplan',
+            referencedTableName: 'plans',
             referencedColumnNames: ['id'],
-            columnNames: ['company_id'],
-            onDelete: 'CASCADE',
+            columnNames: ['plan_id'],
+            onDelete: 'SET NULL',
             onUpdate: 'CASCADE',
           },
         ],
