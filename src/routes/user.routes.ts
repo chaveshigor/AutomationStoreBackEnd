@@ -1,22 +1,19 @@
 import { Router } from 'express';
 
-import { checkIfCompanyExistsById } from '../middlewares/companyMiddlewares';
 import { ensureAuth } from '../middlewares/ensureAuth';
-import { checkIfUserIsAdmin } from '../middlewares/usersMiddlewares';
 import { AutoDeleteUserController } from '../modules/users/useCases/autoDeteleUser/autoDeleteUserController';
 import { ChangeRoleController } from '../modules/users/useCases/changeRule/changeRoleController';
+import { ChangeUserPlanController } from '../modules/users/useCases/changeUserPlan/changeUserPlanController';
 import { CreateUserController } from '../modules/users/useCases/createUser/createUserController';
 
 const userRoutes = Router();
 
 userRoutes.post('/',
-  checkIfCompanyExistsById,
   new CreateUserController().handle);
 
 userRoutes.patch('/',
   ensureAuth,
-  checkIfUserIsAdmin,
-  new ChangeRoleController().handle);
+  new ChangeUserPlanController().handle);
 
 userRoutes.delete('/',
   ensureAuth,
