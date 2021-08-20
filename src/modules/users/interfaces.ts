@@ -3,13 +3,12 @@ interface IRequestCreateUser {
     last_name: string
     email: string
     password: string
-    company_id: string
-    admin: boolean
+    plan_id: string
 }
 
-interface IRequestChangeRole {
-    user_changer: string
-    user_to_change_role: string
+interface IRequestChangePlan {
+    user_id: string
+    new_plan_id: string
 }
 
-export { IRequestCreateUser, IRequestChangeRole };
+export { IRequestCreateUser, IRequestChangePlan };
