@@ -1,9 +1,7 @@
 import {
-  Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, ManyToOne, JoinColumn,
+  Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
-
-import { Company } from './Company';
 
 @Entity('users')
 class User {
@@ -23,14 +21,7 @@ class User {
     password: string
 
     @Column()
-    company_id: string
-
-    // @JoinColumn({ name: 'company_id' })
-    // @ManyToOne(() => Company)
-    // user_company: Company
-
-    @Column()
-    admin: boolean
+    plan_id: string
 
     @CreateDateColumn()
     created_at: Date

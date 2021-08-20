@@ -9,19 +9,13 @@ class ShippedProduct {
     id?: string
 
     @Column()
-    product_name: string
+    name: string
 
     @Column()
-    status: string
+    transporter_id: string
 
     @Column()
-    sended_by: string
-
-    @Column()
-    sended_date: Date
-
-    @Column()
-    transporter_code: string
+    purchase_date: Date
 
     @CreateDateColumn()
     created_at?: Date
