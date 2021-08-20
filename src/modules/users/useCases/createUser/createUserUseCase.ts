@@ -14,7 +14,7 @@ class CreateUserUseCase {
   ) {}
 
   async execute({
-    first_name, last_name, email, password, admin, company_id,
+    first_name, last_name, email, password, plan_id,
   }: IRequestCreateUser): Promise<User> {
     const { repo } = this;
 
@@ -27,7 +27,7 @@ class CreateUserUseCase {
     const passwordHash = await hash(password, salt);
 
     const newUser = repo.create({
-      first_name, last_name, email, password: passwordHash, admin, company_id,
+      first_name, last_name, email, password: passwordHash, plan_id,
     });
 
     return newUser;
