@@ -1,19 +1,37 @@
-import { Company } from '../../models/Company';
 import { Plan } from '../../models/Plan';
+import { User } from '../../models/User';
+import { IPlansRepository } from '../../modules/plan/repositories/IPlansRepository';
+import { IUsersRepository } from '../../modules/users/repositories/IUsersRepository';
 
-const planSeed = (): Plan => ({
-  name: 'rd-d2',
-  price: 50,
-});
+const planSeed = async (repo: IPlansRepository, create = false): Promise<Plan> => {
+  const plan = {
+    name: 'T-800',
+    price: 50,
+  };
 
-const companySeed = (plan_id: string):Company => ({
-  name: 'automation store s.a',
-  CNPJ: '123.456.789-10',
-  fantasy_name: 'a-s s.a',
-  adress: 'rua 10',
-  phone: '21123654879',
-  email: 'automationstore@mail.com',
-  plan_id,
-});
+  if (create) {
+    const response = await repo.create(plan);
+    return response;
+  }
 
-export { planSeed, companySeed };
+  return plan;
+};
+
+const userSeed = async (repo: IUsersRepository, plan_id: string, create = false): Promise<User> => {
+  const user: User = {
+    first_name: 'higor',
+    last_name: 'chaves',
+    email: 'higorchaves@gmail.com',
+    password: '123456',
+    plan_id,
+  };
+
+  if (create) {
+    const response = await repo.create(user);
+    return response;
+  }
+
+  return user;
+};
+
+export { planSeed, userSeed };
