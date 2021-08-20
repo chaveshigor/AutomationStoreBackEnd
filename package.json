@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "before-tests": "NODE_ENV=test ts-node-dev --transpile-only src/__tests__/utils/runBeforeTests.ts",
-    "unit-tests": "NODE_ENV=test yarn before-tests && jest --watchAll --testPathPattern=src/__tests__/unit",
+    "unit-tests": "NODE_ENV=test jest --watchAll --testPathPattern=src/__tests__/unit",
     "integration-tests": "NODE_ENV=test yarn before-tests && jest --watchAll --testPathPattern=src/__tests__/integration",
     "dev": "ts-node-dev src/index.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
