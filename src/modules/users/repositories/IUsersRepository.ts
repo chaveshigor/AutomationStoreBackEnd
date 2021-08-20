@@ -6,14 +6,13 @@ interface IParams {
     last_name?: string
     email?: string
     password?: string
-    admin?: boolean
-    company_id?: string
+    plan_id?: string
 }
 
 interface IUsersRepository {
     findOne(params: IParams): Promise<User | undefined>
     create(userData: IParams): Promise<User>
-    update(userToChange: IParams, userData: IParams): Promise<User | undefined>
+    updatePlan(user_id: string, new_plan_id: string): Promise<User | undefined>
     deleteById(user_id: string): Promise<void>
 }
 

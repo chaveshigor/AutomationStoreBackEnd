@@ -15,43 +15,32 @@ class UsersRepositoryInMemory implements IUsersRepository {
       if (params.email) {
         return this.repo.find((user) => user.id === params.email);
       }
-      if (params.company_id) {
-        return this.repo.find((user) => user.id === params.company_id);
+      if (params.plan_id) {
+        return this.repo.find((user) => user.id === params.plan_id);
       }
 
       return undefined;
     }
 
     async create({
-      company_id, email, first_name, last_name,
+      plan_id, email, first_name, last_name, password,
     }: IParams): Promise<User> {
       const newUser = new User();
 
       Object.assign(newUser, {
-        company_id, email, first_name, last_name,
+        plan_id, email, first_name, last_name, password,
       });
       this.repo.push(newUser);
       return newUser;
     }
 
-    async update(userToChange: IParams, {
-      admin, email, last_name, first_name,
-    }: IParams): Promise<User | undefined> {
-      let user: User;
-      let index = 0;
-      user = new User();
+    async updatePlan(user_id: string, plan_id: string): Promise<User | undefined> {
+      const user = this.repo.find((user) => user.id === user_id) as User;
+      const index = this.repo.indexOf(user) as number;
 
-      if (userToChange.id) {
-        user = this.repo.find((user) => user.id === userToChange.id) as User;
-      }
-      if (userToChange.email) {
-        user = this.repo.find((user) => user.email === userToChange.email) as User;
-      }
-
-      index = this.repo.indexOf(user);
       Object.assign(this.repo[index], {
         updated_at: new Date(),
-
+        plan_id,
       });
       return this.repo[index];
     }

@@ -10,6 +10,7 @@ class UsersRepository implements IUsersRepository {
     constructor() {
       this.repo = getRepository(User);
     }
+
     async deleteById(user_id: string): Promise<void> {
       await this.repo.delete(user_id);
     }
@@ -25,9 +26,9 @@ class UsersRepository implements IUsersRepository {
 
       return newUser;
     }
-    async update(userToChange: IParams, userData: IParams): Promise<User | undefined> {
-      await this.repo.update(userToChange, userData);
-      const user = await this.findOne(userToChange);
+    async updatePlan(user_id: string, new_plan_id: string): Promise<User | undefined> {
+      await this.repo.update(user_id, { plan_id: new_plan_id });
+      const user = await this.repo.findOne(user_id);
 
       return user;
     }
