@@ -4,7 +4,6 @@ import { createTransport } from 'nodemailer';
 import { join } from 'path';
 
 async function sendEmail(html: string, emailDestiny: string, emailSubject: string): Promise<void> {
-  console.log(process.env.EMAIL_HOST);
   const transport = createTransport({
     host: process.env.EMAIL_HOST || 'smtp.mailtrap.io',
     port: parseInt(process.env.EMAIL_PORT as string, 10) || 2525,
