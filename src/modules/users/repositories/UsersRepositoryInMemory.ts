@@ -13,10 +13,10 @@ class UsersRepositoryInMemory implements IUsersRepository {
         return this.repo.find((user) => user.id === params.id);
       }
       if (params.email) {
-        return this.repo.find((user) => user.id === params.email);
+        return this.repo.find((user) => user.email === params.email);
       }
       if (params.plan_id) {
-        return this.repo.find((user) => user.id === params.plan_id);
+        return this.repo.find((user) => user.plan_id === params.plan_id);
       }
 
       return undefined;
@@ -41,6 +41,17 @@ class UsersRepositoryInMemory implements IUsersRepository {
       Object.assign(this.repo[index], {
         updated_at: new Date(),
         plan_id,
+      });
+      return this.repo[index];
+    }
+
+    async updatePassword(user_id: string, new_password: string): Promise<User> {
+      const user = this.repo.find((user) => user.id === user_id) as User;
+      const index = this.repo.indexOf(user) as number;
+
+      Object.assign(this.repo[index], {
+        updated_at: new Date(),
+        password: new_password,
       });
       return this.repo[index];
     }
