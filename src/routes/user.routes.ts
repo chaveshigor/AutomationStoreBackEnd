@@ -2,7 +2,6 @@ import { Router } from 'express';
 
 import { ensureAuth } from '../middlewares/ensureAuth';
 import { AutoDeleteUserController } from '../modules/users/useCases/autoDeteleUser/autoDeleteUserController';
-import { ChangeRoleController } from '../modules/users/useCases/changeRule/changeRoleController';
 import { ChangeUserPlanController } from '../modules/users/useCases/changeUserPlan/changeUserPlanController';
 import { CreateUserController } from '../modules/users/useCases/createUser/createUserController';
 
