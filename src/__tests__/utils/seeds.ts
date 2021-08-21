@@ -1,3 +1,5 @@
+import { hash } from 'bcrypt';
+
 import { Plan } from '../../models/Plan';
 import { User } from '../../models/User';
 import { IPlansRepository } from '../../modules/plan/repositories/IPlansRepository';
@@ -18,11 +20,13 @@ const planSeed = async (repo: IPlansRepository, create = false): Promise<Plan> =
 };
 
 const userSeed = async (repo: IUsersRepository, plan_id: string, create = false): Promise<User> => {
+  const passwordHash = await hash('123456', 8);
+
   const user: User = {
     first_name: 'higor',
     last_name: 'chaves',
     email: 'higorchaves@gmail.com',
-    password: '123456',
+    password: passwordHash,
     plan_id,
   };
 
