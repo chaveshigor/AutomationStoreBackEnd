@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
@@ -13,7 +14,6 @@ interface IUserReturn {
     first_name: string
     last_name: string
     email: string
-    admin: boolean
   }
   token: string
 }
@@ -40,7 +40,7 @@ class AuthUserUseCase {
       throw new ErrorHandler('wrong email or password', 400);
     }
 
-    const secret = process.env.APP_SECRET as string;
+    const secret = process.env.APP_SECRET as string || 'secret';
     const token = sign({}, secret, {
       subject: user.id,
       expiresIn: '1d',
@@ -48,11 +48,10 @@ class AuthUserUseCase {
 
     const userToReturn = {
       user: {
-        id: user.id,
+        id: user.id as string,
         email: user.email,
         first_name: user.first_name,
         last_name: user.last_name,
-        admin: user.admin,
       },
       token,
     };

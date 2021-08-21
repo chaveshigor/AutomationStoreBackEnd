@@ -1,7 +1,6 @@
 import { genSalt, hash } from 'bcrypt';
 import { inject, injectable } from 'tsyringe';
 
-import { readHtml, sendEmail } from '../../../../shared/email/emailFunctions';
 import { ErrorHandler } from '../../../../shared/ErrorHandler';
 import { IUsersRepository } from '../../../users/repositories/IUsersRepository';
 import { ITokensRepository } from '../../repositories/ITokensRepository';
@@ -28,7 +27,7 @@ class ResetPasswordUseCase {
       throw new ErrorHandler('user not founded', 404);
     }
 
-    const current_token = await this.tokensRepo.findByUserId(user.id);
+    const current_token = await this.tokensRepo.findByUserId(user.id as string);
     if (!current_token) {
       throw new ErrorHandler('unalthorized', 401);
     }
@@ -45,9 +44,7 @@ class ResetPasswordUseCase {
 
     const salt = await genSalt(8);
     const passwordHash = await hash(new_password, salt);
-    await this.usersRepo.update({ id: user.id }, {
-      password: passwordHash,
-    });
+    await this.usersRepo.updatePassword(user.id as string, passwordHash);
   }
 }
 
