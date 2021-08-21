@@ -10,20 +10,11 @@ class TokensRepository implements ITokensRepository {
       this.repo = getRepository(Token);
     }
 
-    async create(id: string): Promise<Token> {
-      function sumHoursToDate(hours: number):Date {
-        const currentTime = new Date();
-        const expiration_time = new Date(currentTime.setHours(currentTime.getHours() + hours));
-
-        return expiration_time;
-      }
-
-      const randomNumber = Math.random().toString();
-      const tokenHash = await hash(randomNumber, 10);
+    async create(id: string, tokenHash: string, expire_date: Date): Promise<Token> {
       const token = this.repo.create({
         user_id: id,
         token: tokenHash,
-        expire_at: sumHoursToDate(3),
+        expire_at: expire_date,
       });
       await this.repo.save(token);
 
