@@ -20,6 +20,14 @@ export class ShippedProducts1629426950821 implements MigrationInterface {
             type: 'uuid',
           },
           {
+            name: 'user_id',
+            type: 'uuid',
+          },
+          {
+            name: 'mail_code',
+            type: 'varchar',
+          },
+          {
             name: 'purchase_date',
             type: 'timestamp',
           },
@@ -40,6 +48,14 @@ export class ShippedProducts1629426950821 implements MigrationInterface {
             referencedTableName: 'transporters',
             referencedColumnNames: ['id'],
             columnNames: ['transporter_id'],
+            onDelete: 'SET NULL',
+            onUpdate: 'CASCADE',
+          },
+          {
+            name: 'FKuserid',
+            referencedTableName: 'users',
+            referencedColumnNames: ['id'],
+            columnNames: ['user_id'],
             onDelete: 'SET NULL',
             onUpdate: 'CASCADE',
           },
