@@ -1,9 +1,11 @@
 import { hash } from 'bcrypt';
 
 import { Plan } from '../../models/Plan';
+import { ShippedProduct } from '../../models/ShippedProduct';
 import { Transporter } from '../../models/Transporter';
 import { User } from '../../models/User';
 import { IPlansRepository } from '../../modules/plan/repositories/IPlansRepository';
+import { IShippedRepository } from '../../modules/shippedProduct/repositories/IShippedProducts';
 import { ITransportersRepository } from '../../modules/transporter/repositories/ITransportersRepository';
 import { IUsersRepository } from '../../modules/users/repositories/IUsersRepository';
 
@@ -57,4 +59,25 @@ const transporterSeed = async (
   return transporter;
 };
 
-export { planSeed, userSeed, transporterSeed };
+const productSeed = async (
+  repo: IShippedRepository, transporter_id: string, user_id: string, create = false,
+): Promise<ShippedProduct> => {
+  const product: ShippedProduct = {
+    mail_code: 'QF422202748BR',
+    name: 'taco de sinuca',
+    purchase_date: new Date(),
+    transporter_id,
+    user_id,
+  };
+
+  if (create) {
+    const response = await repo.create(product);
+    return response;
+  }
+
+  return product;
+};
+
+export {
+  planSeed, userSeed, transporterSeed, productSeed,
+};
