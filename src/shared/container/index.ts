@@ -4,8 +4,8 @@ import { ITokensRepository } from '../../modules/auth/repositories/ITokensReposi
 import { TokensRepository } from '../../modules/auth/repositories/tokensRepository';
 import { IPlansRepository } from '../../modules/plan/repositories/IPlansRepository';
 import { PlansRepository } from '../../modules/plan/repositories/plansRepository';
-import { IShippedRepository } from '../../modules/product/repositories/IShippedProducts';
-import { ShippedProductsRepository } from '../../modules/product/repositories/shippedProductsRepository';
+import { IShippedRepository } from '../../modules/shippedProduct/repositories/IShippedProducts';
+import { ShippedProductsRepository } from '../../modules/shippedProduct/repositories/shippedProductsRepository';
 import { ITransportersRepository } from '../../modules/transporter/repositories/ITransportersRepository';
 import { TransportersRepository } from '../../modules/transporter/repositories/TransportersRepository';
 import { IUsersRepository } from '../../modules/users/repositories/IUsersRepository';
