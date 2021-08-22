@@ -15,6 +15,12 @@ class ShippedProduct {
     transporter_id: string
 
     @Column()
+    user_id: string
+
+    @Column()
+    mail_code: string
+
+    @Column()
     purchase_date: Date
 
     @CreateDateColumn()
