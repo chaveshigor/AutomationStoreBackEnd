@@ -6,6 +6,8 @@ import { IPlansRepository } from '../../modules/plan/repositories/IPlansReposito
 import { PlansRepository } from '../../modules/plan/repositories/plansRepository';
 import { IShippedRepository } from '../../modules/product/repositories/IShippedProducts';
 import { ShippedProductsRepository } from '../../modules/product/repositories/shippedProductsRepository';
+import { ITransportersRepository } from '../../modules/transporter/repositories/ITransportersRepository';
+import { TransportersRepository } from '../../modules/transporter/repositories/TransportersRepository';
 import { IUsersRepository } from '../../modules/users/repositories/IUsersRepository';
 import { UsersRepository } from '../../modules/users/repositories/usersRepository';
 
@@ -27,4 +29,9 @@ container.registerSingleton<ITokensRepository>(
 container.registerSingleton<IShippedRepository>(
   'ShippedProductsRepository',
   ShippedProductsRepository,
+);
+
+container.registerSingleton<ITransportersRepository>(
+  'TransportersRepository',
+  TransportersRepository,
 );
