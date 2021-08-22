@@ -1,8 +1,10 @@
 import { hash } from 'bcrypt';
 
 import { Plan } from '../../models/Plan';
+import { Transporter } from '../../models/Transporter';
 import { User } from '../../models/User';
 import { IPlansRepository } from '../../modules/plan/repositories/IPlansRepository';
+import { ITransportersRepository } from '../../modules/transporter/repositories/ITransportersRepository';
 import { IUsersRepository } from '../../modules/users/repositories/IUsersRepository';
 
 const planSeed = async (repo: IPlansRepository, create = false): Promise<Plan> => {
@@ -38,4 +40,21 @@ const userSeed = async (repo: IUsersRepository, plan_id: string, create = false)
   return user;
 };
 
-export { planSeed, userSeed };
+const transporterSeed = async (
+  repo: ITransportersRepository,
+  name: string,
+  create = false,
+): Promise<Transporter> => {
+  const transporter = {
+    name,
+  };
+
+  if (create) {
+    const response = await repo.create(name);
+    return response;
+  }
+
+  return transporter;
+};
+
+export { planSeed, userSeed, transporterSeed };
